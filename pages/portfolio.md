@@ -5,7 +5,9 @@ title: Portfolio
 <Dropdown data={funds} name=fund value=fund_id label=fund_name defaultValue="ALL" />
 <Dropdown data={stages} name=stage value=stage_id label=stage_name defaultValue="ALL" />
 <Dropdown data={regions} name=region value=region label=region defaultValue="All Regions" />
-<Dropdown data={countries} name=country value=country_code label=country_name defaultValue="ALL" />
+<Dropdown data={countries} name=country value=country_code label=country_name defaultValue="ALL">
+  <DropdownOption value="ALL" valueLabel="All Countries" />
+</Dropdown>
 
 <AreaChart
   data={exposure_ts}
@@ -51,7 +53,9 @@ title: Portfolio
     country_code,
     country_name
   from mrt_exposure_by_region
-  where country_code is not null and country_name is not null
+  where country_code is not null
+    and country_name is not null
+    and region = '${inputs.region.value}'
   order by country_name
 ```
 
