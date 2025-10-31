@@ -5,19 +5,20 @@ title: Portfolio
 <Dropdown data={funds} name=fund value=fund_id label=fund_name defaultValue="ALL" />
 <Dropdown data={stages} name=stage value=stage_id label=stage_name defaultValue="ALL" />
 <Dropdown data={regions} name=region value=region label=region defaultValue="All Regions" />
+<Dropdown data={countries} name=country value=country_code label=country_name defaultValue="ALL" />
 
 <AreaChart
   data={exposure_ts}
   title="Current vs Forecast Exposure Over Time"
   type="stacked"
-  x=month
+  x=month 
   y=total_exposure_usd
   series=period_type
   seriesOrder={["Current","Forecast"]}
 />
 
 ```sql metrics
-  select
+  select 
     *
   from mrt_exposure_by_region
   order by total_exposure_usd desc 
@@ -45,6 +46,15 @@ title: Portfolio
   order by region
 ```
 
+```sql countries
+  select distinct
+    country_code,
+    country_name
+  from mrt_exposure_by_region
+  where country_code is not null and country_name is not null
+  order by country_name
+```
+
 ```sql exposure_ts
   with filtered as (
     select
@@ -58,6 +68,7 @@ title: Portfolio
       and cast(fund_id as varchar) = '${inputs.fund.value}'
       and cast(stage_id as varchar) = '${inputs.stage.value}'
       and region = '${inputs.region.value}'
+      and country_code = '${inputs.country.value}'
   ), months as (
     select distinct month from filtered
   ), first_current_month as (
