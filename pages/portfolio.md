@@ -22,7 +22,7 @@ title: Portfolio
 
 <AreaMap
   data={exposure_map}
-  title="Forecast Exposure by Country ({inputs.fund.label || 'All Funds'}, {inputs.stage.label || 'All Stages'})"
+  title="Forecast Exposure by Country ({inputs.fund.label || 'All Funds'}, {inputs.stage.label || 'All Stages'}) — {$selected_month_label?.[0]?.label}"
   legendType="scalar"
   areaCol="country_code"
   geoId="iso_a2"
@@ -108,6 +108,10 @@ title: Portfolio
     and country_name is not null
     and region = '${inputs.region.value}'
   order by country_name
+```
+
+```sql selected_month_label
+  select strftime(date '1899-12-30' + (${inputs.month} * interval 1 day), '%b %Y') as label
 ```
 
 ```sql exposure_ts
