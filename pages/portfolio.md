@@ -11,13 +11,24 @@ title: Portfolio
 
 <AreaChart
   data={exposure_ts}
-  title="Current vs Forecast Exposure Over Time"
+  title="Forecast Exposure Over Time"
   subtitle="{inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | {inputs.region.value} | {inputs.country.label || 'All Countries'}"
   type="stacked"
   x=month 
   y=total_exposure_usd
   series=period_type
   seriesOrder={["Current","Forecast"]}
+/>
+
+<AreaMap
+  data={exposure_map}
+  title="Forecast Exposure by Country ({inputs.fund.label || 'All Funds'}, {inputs.stage.label || 'All Stages'})"
+  legendType="scalar"
+  areaCol="country_code"
+  geoId="iso_a2"
+  value=exposure_usd
+  geoJsonUrl="https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson"
+  height={480}
 />
 
 <Slider
@@ -30,22 +41,6 @@ title: Portfolio
   minColumn="min_serial"
   fmt="mmm yyyy"
   size="large"
-/>
-
-<p class="text-[13px] text-base-content-muted mt-0 mb-2">
-  Fund: {inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | Region: {inputs.region.value} | Country: {inputs.country.label || 'All Countries'}
-</p>
-
-<AreaMap
-  data={exposure_map}
-  title="Exposure by Country"
-  description="{inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | {inputs.region.value} | {inputs.country.label || 'All Countries'}"
-  legendType="scalar"
-  areaCol="country_code"
-  geoId="iso_a2"
-  value=exposure_usd
-  geoJsonUrl="https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson"
-  height={480}
 />
 
 ```sql metrics
