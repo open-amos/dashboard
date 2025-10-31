@@ -26,7 +26,8 @@ title: Portfolio
   legendType="scalar"
   areaCol="country_code"
   geoId="iso_a2"
-  value=exposure_usd
+  value=exposure
+  valueFmt="usd0"
   geoJsonUrl="https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson"
   height={480}
 />
@@ -157,7 +158,7 @@ title: Portfolio
     select
       date_trunc('month', cast(exposure_month as date)) as month,
       country_code,
-      sum(coalesce(total_exposure_usd,0)) as exposure_usd
+      sum(coalesce(total_exposure_usd,0)) as exposure
     from mrt_exposure_by_region
     where 1=1
       and cast(fund_id as varchar) = '${inputs.fund.value}'
@@ -166,7 +167,7 @@ title: Portfolio
   ), selected as (
     select date_trunc('month', cast(date '1899-12-30' + (${inputs.month} * interval 1 day) as date)) as selected_month
   )
-  select b.country_code, b.exposure_usd
+  select b.country_code, b.exposure as exposure
   from base b
   where b.month = (select selected_month from selected)
 ```
