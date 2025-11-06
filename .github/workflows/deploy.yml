@@ -23,8 +23,13 @@ jobs:
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
           ## Add and uncomment any environment variables here
-          ## EVIDENCE_SOURCE__my_source__username: ${{ secrets.EVIDENCE_SOURCE__MY_SOURCE__USERNAME }}
-          ## EVIDENCE_SOURCE__my_source__private_key: ${{ secrets.EVIDENCE_SOURCE__MY_SOURCE__PRIVATE_KEY }}
+          EVIDENCE_SOURCE__needful_things__filename: ${{ secrets.EVIDENCE_SOURCE__needful_things__filename }}
+          EVIDENCE_SOURCE__postgres__database: ${{ secrets.EVIDENCE_SOURCE__postgres__database }}
+          EVIDENCE_SOURCE__postgres__host: ${{ secrets.EVIDENCE_SOURCE__postgres__host }}
+          EVIDENCE_SOURCE__postgres__port: ${{ secrets.EVIDENCE_SOURCE__postgres__port }}
+          EVIDENCE_SOURCE__postgres__schema: ${{ secrets.EVIDENCE_SOURCE__postgres__schema }}
+          EVIDENCE_SOURCE__postgres__password: ${{ secrets.EVIDENCE_SOURCE__postgres__password }}
+          EVIDENCE_SOURCE__postgres__user: ${{ secrets.EVIDENCE_SOURCE__postgres__user }}
         run: |
           npm run sources
           npm run build
