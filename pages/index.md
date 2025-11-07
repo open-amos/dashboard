@@ -6,6 +6,7 @@ queries:
   - regions: dimensions/regions.sql
   - countries: dimensions/countries.sql
   - exposure_ts: metrics/exposure_ts.sql
+  - industry_current_breakdown: metrics/industry_current_breakdown.sql
 ---
 
 
@@ -79,6 +80,23 @@ The AMOS Core project provides a canonical model for private markets that define
   series=period_type
   seriesOrder={["Current","Forecast"]}
 />
+
+<ECharts config={
+  {
+    tooltip: {
+      formatter: '{b}: {c} ({d}%)'
+    },
+    series: [
+      {
+        type: 'pie',
+        data: industry_current_breakdown?.map(d => ({
+          name: d.industry_name,
+          value: d.total_exposure_usd
+        })) || []
+      }
+    ]
+  }
+} />
 
 <hr class="my-4" />
 
