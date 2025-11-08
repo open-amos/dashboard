@@ -7,6 +7,7 @@ queries:
   - countries: dimensions/countries.sql
   - exposure_ts: metrics/exposure_ts.sql
   - industry_current_breakdown: metrics/industry_current_breakdown.sql
+  - region_current_breakdown: metrics/region_current_breakdown.sql
 ---
 
 
@@ -97,6 +98,23 @@ AMOS' centralized data platform powers consistent KPIs and live reporting across
           type: 'pie',
           data: industry_current_breakdown?.map(d => ({
             name: d.industry_name,
+            value: d.total_exposure_usd
+          })) || []
+        }
+      ]
+    }
+  } />
+
+  <ECharts config={
+    {
+      tooltip: {
+        formatter: '{b}: {c} ({d}%)'
+      },
+      series: [
+        {
+          type: 'pie',
+          data: region_current_breakdown?.map(d => ({
+            name: d.region,
             value: d.total_exposure_usd
           })) || []
         }
