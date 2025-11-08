@@ -126,9 +126,17 @@ AMOS' centralized data platform powers consistent KPIs and live reporting across
 
 <hr class="my-4" />
 
-## Customize and extend
+## AI Assistants
 
-Connect your own systems to the AMOS data platform. Add your ESG data, market data, and other data sources. AMOS is the central layer that connects your data and systems into a single, consistent layer of truth, providing ready-made pipelines, models, and metrics for your fund data.
+AMOS provides an AI-ready semantic layer through AMOS Core, allowing language models and assistants to query your private markets data directly through the MCP (Model Context Protocol). This creates a safe, structured interface for retrieval-augmented generation (RAG) and conversational analytics.
+
+You can connect AI copilots or custom LLM applications to AMOS via MCP endpoints. These endpoints expose the same unified schema and metrics used across the dashboard. This ensures your assistants understand entities like funds, deals, exposures, and investors in consistent business terms, and provide verifiable answers backed by the data.
+
+<LinkButton url='/components/ui/link-button'>
+  Chat with an AI assistant
+</LinkButton>
+
+<hr class="my-4" />
 
 ## Next steps
 
