@@ -10,11 +10,13 @@ queries:
 ---
 
 
-Explore how AMOS connects and models your private markets data—from deals and funds to investors and exposures—into a single, consistent view. This demo uses sample data to illustrate what a unified fund dashboard looks like when powered by AMOS Core.
+Explore how AMOS connects and models your private markets data—from deals and funds to investors and exposures—into a single, consistent view. This demo is powered by [AMOS Core](https://github.com/open-amos/core) for the data backbone (pipelines, models and metrics), [AMOS Source Example](https://github.com/open-amos/source-example) for sample connectors and data, and [AMOS Dashboard Example](https://github.com/open-amos/dashboard-example) for the demo dashboard. The codebase is fully open source. It can be deployed and customized by internal IT or data teams, or by AMOS for managed deployments.
+
+<hr class="my-4" />
 
 ## Connected sources
 
-This demo uses sample data from the AMOS Source Example project.
+AMOS reconciles and standardizes your data and systems into a **single source of truth**. In this demo, AMOS is pulling data from four systems used by Acme Capital, a fictional private equity and private credit firm:
 
 <div class="mx-auto max-w-5xl p-0">
 
@@ -57,11 +59,13 @@ Connect your own systems to the AMOS data platform. Add your ESG data, market da
 
 </Modal>
 
-## Unified data model, 360° metrics
-
-The AMOS Core project provides a canonical model for private markets that defines the standard entities and relationships between them. It includes a set of metrics and KPIs that are common to all funds. This allows you to use the same metrics and KPIs across all your funds, regardless of the data source or system.
-
 <hr class="my-4" />
+
+## Live Reporting
+
+AMOS' centralized data platform powers consistent KPIs and live reporting across Acme Capital's investments and operations. 
+
+<Alert status="info">A use case: Acme Capital invests in multiple industries and regions, while having to comply with binding exposure limits based on total investor commitments. In order to stay on track and anticipate compliance risks, the Acme team has to reconcile data from their CRM, portfolio management system and fund administrator. Without AMOS, it's a manual, error-prone process that takes days to complete. With AMOS, they can just keep an eye on the built-in metrics to track and forecast exposure in real time, and report directly to their investors. They are gaining time, clarity and confidence in their investment decisions.</Alert>
 
 <Dropdown data={funds} name=fund value=fund_id label=fund_name defaultValue="ALL" />
 <Dropdown data={stages} name=stage value=stage_id label=stage_name defaultValue="ALL" />
@@ -81,22 +85,26 @@ The AMOS Core project provides a canonical model for private markets that define
   seriesOrder={["Current","Forecast"]}
 />
 
-<ECharts config={
-  {
-    tooltip: {
-      formatter: '{b}: {c} ({d}%)'
-    },
-    series: [
-      {
-        type: 'pie',
-        data: industry_current_breakdown?.map(d => ({
-          name: d.industry_name,
-          value: d.total_exposure_usd
-        })) || []
-      }
-    ]
-  }
-} />
+<Grid cols=2>
+
+  <ECharts config={
+    {
+      tooltip: {
+        formatter: '{b}: {c} ({d}%)'
+      },
+      series: [
+        {
+          type: 'pie',
+          data: industry_current_breakdown?.map(d => ({
+            name: d.industry_name,
+            value: d.total_exposure_usd
+          })) || []
+        }
+      ]
+    }
+  } />
+
+</Grid>
 
 <hr class="my-4" />
 
@@ -110,3 +118,4 @@ Connect your own systems to the AMOS data platform. Add your ESG data, market da
 - Explore the [AMOS Source Example](https://github.com/open-amos/source-example) to learn more about the sample data and models.
 - Explore the [AMOS Core](https://github.com/open-amos/core) to learn more about the canonical model.
 - Explore the [AMOS Starter](https://github.com/open-amos/starter) to learn more about the orchestrator.
+- Explore this dashboard's codebase in the [AMOS Dashboard Example](https://github.com/open-amos/dashboard-example) repository.
