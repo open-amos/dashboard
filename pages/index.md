@@ -5,9 +5,8 @@ queries:
   - stages: dimensions/stages.sql
   - regions: dimensions/regions.sql
   - countries: dimensions/countries.sql
-  - exposure_ts: metrics/exposure_ts.sql
-  - industry_current_breakdown: metrics/industry_current_breakdown.sql
-  - region_current_breakdown: metrics/region_current_breakdown.sql
+  - exposure_forecasts: metrics/exposure_forecasts.sql
+  - exposure_current_breakdown: metrics/exposure_current_breakdown.sql
 ---
 
 Welcome to the Acme Capital's dashboard! Acme Capital is a fictional private equity and private credit firm. This dashboard is a showcase of the AMOS data platform, showing how it can be used to connect and model your private markets data.
@@ -77,7 +76,7 @@ Connect your own systems to the AMOS data platform. Add your ESG data, market da
 </Dropdown>
 
 <AreaChart
-  data={exposure_ts}
+  data={exposure_forecasts}
   title="Forecast Exposure Over Time"
   subtitle="{inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | {inputs.region.value} | {inputs.country.label || 'All Countries'}"
   type="stacked"
@@ -97,10 +96,15 @@ Connect your own systems to the AMOS data platform. Add your ESG data, market da
       series: [
         {
           type: 'pie',
-          data: industry_current_breakdown?.map(d => ({
-            name: d.industry_name,
-            value: d.total_exposure_usd
-          })) || []
+          data: exposure_current_breakdown?.reduce((acc, d) => {
+            const existing = acc.find(item => item.name === d.industry_name);
+            if (existing) {
+              existing.value += d.total_exposure_usd;
+            } else {
+              acc.push({ name: d.industry_name, value: d.total_exposure_usd });
+            }
+            return acc;
+          }, []) || []
         }
       ]
     }
@@ -114,10 +118,15 @@ Connect your own systems to the AMOS data platform. Add your ESG data, market da
       series: [
         {
           type: 'pie',
-          data: region_current_breakdown?.map(d => ({
-            name: d.region,
-            value: d.total_exposure_usd
-          })) || []
+          data: exposure_current_breakdown?.reduce((acc, d) => {
+            const existing = acc.find(item => item.name === d.region);
+            if (existing) {
+              existing.value += d.total_exposure_usd;
+            } else {
+              acc.push({ name: d.region, value: d.total_exposure_usd });
+            }
+            return acc;
+          }, []) || []
         }
       ]
     }

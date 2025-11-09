@@ -8,8 +8,7 @@ queries:
   - regions: dimensions/regions.sql
   - countries: dimensions/countries.sql
   - selected_month_label: helpers/selected_month_label.sql
-  - exposure_ts: metrics/exposure_ts.sql
-  - industry_exposure_ts: metrics/industry_exposure_ts.sql
+  - exposure_forecasts: metrics/exposure_forecasts.sql
   - exposure_map: metrics/exposure_map.sql
 ---
 
@@ -29,7 +28,7 @@ queries:
 </Dropdown>
 
 <AreaChart
-  data={exposure_ts}
+  data={exposure_forecasts}
   title="Forecast Exposure Over Time"
   subtitle="{inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | {inputs.region.value} | {inputs.country.label || 'All Countries'}"
   type="stacked"
@@ -76,7 +75,7 @@ queries:
 </Dropdown>
 
 <AreaChart
-  data={industry_exposure_ts}
+  data={exposure_forecasts}
   title="Exposure by Industry Over Time"
   subtitle="{inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | {inputs.industry.label || 'All Industries'}"
   type="stacked"
