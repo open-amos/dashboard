@@ -23,3 +23,4 @@ group by 1
 order by total_exposure_usd desc
 
 
+

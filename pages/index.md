@@ -10,14 +10,11 @@ queries:
   - region_current_breakdown: metrics/region_current_breakdown.sql
 ---
 
-
-Explore how AMOS connects and models your private markets data—from deals and funds to investors and exposures—into a single, consistent view. This demo is powered by [AMOS Core](https://github.com/open-amos/core) for the data backbone (pipelines, models and metrics), [AMOS Source Example](https://github.com/open-amos/source-example) for sample connectors and data, and [AMOS Dashboard Example](https://github.com/open-amos/dashboard-example) for the demo dashboard. The codebase is fully open source. It can be deployed and customized by internal IT or data teams, or by AMOS for managed deployments.
+Welcome to the Acme Capital's dashboard! Acme Capital is a fictional private equity and private credit firm. This dashboard is a showcase of the AMOS data platform, showing how it can be used to connect and model your private markets data.
 
 <hr class="my-4" />
 
 ## Connected sources
-
-AMOS reconciles and standardizes your data and systems into a **single source of truth**. In this demo, AMOS is pulling data from four systems used by Acme Capital, a fictional private equity and private credit firm:
 
 <div class="mx-auto max-w-5xl p-0">
 
@@ -62,9 +59,7 @@ Connect your own systems to the AMOS data platform. Add your ESG data, market da
 
 <hr class="my-4" />
 
-## Live Reporting
-
-AMOS' centralized data platform powers consistent KPIs and live reporting across Acme Capital's investments and operations. 
+## Sample Charts
 
 <Alert status="info">A use case: Acme Capital invests in multiple industries and regions, while having to comply with binding exposure limits based on total investor commitments. In order to stay on track and anticipate compliance risks, the Acme team has to reconcile data from their CRM, portfolio management system and fund administrator. Without AMOS, it's a manual, error-prone process that takes days to complete. With AMOS, they can just keep an eye on the built-in metrics to track and forecast exposure in real time, and report directly to their investors. They are gaining time, clarity and confidence in their investment decisions.</Alert>
 
@@ -138,10 +133,6 @@ You can connect AI copilots or custom LLM applications to AMOS via MCP endpoints
 
 <hr class="my-4" />
 
-## Next steps
+## About this demo
 
-- Explore the [AMOS documentation](https://docs.amos.tech) to learn more about the AMOS data platform.
-- Explore the [AMOS Source Example](https://github.com/open-amos/source-example) to learn more about the sample data and models.
-- Explore the [AMOS Core](https://github.com/open-amos/core) to learn more about the canonical model.
-- Explore the [AMOS Starter](https://github.com/open-amos/starter) to learn more about the orchestrator.
-- Explore this dashboard's codebase in the [AMOS Dashboard Example](https://github.com/open-amos/dashboard-example) repository.
+This demo is powered by [AMOS Core](https://github.com/open-amos/core) for the data backbone (pipelines, models and metrics), [AMOS Source Example](https://github.com/open-amos/source-example) for sample connectors and data, and [AMOS Dashboard Example](https://github.com/open-amos/dashboard-example) for the demo dashboard. The codebase is fully open source. It can be deployed and customized by internal IT or data teams, or by AMOS for managed deployments.
