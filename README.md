@@ -1,6 +1,6 @@
 # AMOS
 
-**Version:** 0.1.0 — *Early proof-of-concept release* 
+![image](https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge) ![image](https://img.shields.io/badge/status-proof--of--concept-yellow?style=for-the-badge) ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![image](https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00)
 
 ---
 [Overview](../) | [Starter](../starter) | [Core](../core) | [Source Example](../source-example) | **Dashboard**
@@ -9,7 +9,7 @@
 
 # AMOS Dashboard
 
-A dashboard example built on AMOS Core and AMOS Source Example, based on the [Evidence](https://evidence.dev) framework.
+A dashboard example built on AMOS Core and AMOS Source Example, based on the [Evidence](https://evidence.dev) framework (Svelte).
 
 ## Quick Start
 
@@ -33,6 +33,6 @@ AMOS is open source and welcomes contributions. Report bugs, suggest features, a
 
 ## Related Projects
 
+- **[AMOS Starter](../starter)** - Orchestrator and entry point
 - **[AMOS Core](../core)** - Canonical dimensional model
 - **[AMOS Source Example](../source-example)** - Source integration patterns
-- **[AMOS Dashboard](../dashboard-example)** - Example analytics and KPI dashboards built on AMOS Core
