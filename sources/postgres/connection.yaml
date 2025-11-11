@@ -1,8 +1,0 @@
-# This file was automatically generated
-name: postgres
-type: postgres
-options:
-  database: amos_dbt
-  host: 127.0.0.1
-  port: 5434
-  schema: public_metrics
