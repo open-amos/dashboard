@@ -38,8 +38,7 @@ jobs:
           PGPASSWORD: ${{ secrets.EVIDENCE_SOURCE__postgres__password }}
           PGSSLMODE: require
 
-      - name: Verify Evidence sources
-        working-directory: amos_evidence
+      - name: Verify sources
         env:
           EVIDENCE_SOURCE__needful_things__filename: ${{ secrets.EVIDENCE_SOURCE__needful_things__filename }}
           EVIDENCE_SOURCE__postgres__database: ${{ secrets.EVIDENCE_SOURCE__postgres__database }}
