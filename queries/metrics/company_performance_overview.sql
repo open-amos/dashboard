@@ -1,5 +1,8 @@
 select
-    company_id, company_name, period_end_date,
+    company_id, 
+    '/companies/' || company_id as company_link,
+    company_name, 
+    period_end_date,
     revenue, ebitda, ebitda_margin,
     cash, total_assets, total_liabilities, equity,
     net_debt, enterprise_value,

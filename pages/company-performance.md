@@ -10,6 +10,7 @@ queries:
 
 <DataTable 
   data={company_performance_overview}
+  link=company_link
   rows=20
 >
   <Column id=company_name title="Company Name" />
