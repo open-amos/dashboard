@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Check Postgres connectivity (Supabase)
+      - name: Check Postgres connectivity
         run: |
           sudo apt-get update
           sudo apt-get install -y postgresql-client
@@ -37,6 +37,19 @@ jobs:
           PGUSER: ${{ secrets.EVIDENCE_SOURCE__postgres__user }}
           PGPASSWORD: ${{ secrets.EVIDENCE_SOURCE__postgres__password }}
           PGSSLMODE: require
+
+      - name: Verify Evidence sources
+        working-directory: amos_evidence
+        env:
+          EVIDENCE_SOURCE__needful_things__filename: ${{ secrets.EVIDENCE_SOURCE__needful_things__filename }}
+          EVIDENCE_SOURCE__postgres__database: ${{ secrets.EVIDENCE_SOURCE__postgres__database }}
+          EVIDENCE_SOURCE__postgres__host: ${{ secrets.EVIDENCE_SOURCE__postgres__host }}
+          EVIDENCE_SOURCE__postgres__port: ${{ secrets.EVIDENCE_SOURCE__postgres__port }}
+          EVIDENCE_SOURCE__postgres__schema: ${{ secrets.EVIDENCE_SOURCE__postgres__schema }}   # should be public_metrics
+          EVIDENCE_SOURCE__postgres__user: ${{ secrets.EVIDENCE_SOURCE__postgres__user }}
+          EVIDENCE_SOURCE__postgres__password: ${{ secrets.EVIDENCE_SOURCE__postgres__password }}
+          EVIDENCE_SOURCE__postgres__sslmode: require
+        run: npx evidence sources --strict --debug
 
       - name: build
         env:
