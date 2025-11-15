@@ -1,5 +1,5 @@
 ---
-title: Company Performance
+title: Companies
 queries:
   - company_performance_overview: metrics/company_performance_overview.sql
 ---
