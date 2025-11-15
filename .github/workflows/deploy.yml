@@ -21,6 +21,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Check Postgres connectivity (Supabase)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+          echo "Testing connection to ${PGHOST}:${PGPORT}/${PGDATABASE} (sslmode=${PGSSLMODE:-require})"
+          PGPASSWORD="${PGPASSWORD}" psql "sslmode=${PGSSLMODE:-require} host=${PGHOST} port=${PGPORT} user=${PGUSER} dbname=${PGDATABASE}" -c "select 1;"
+          # Optional: check key tables exist
+          PGPASSWORD="${PGPASSWORD}" psql "sslmode=${PGSSLMODE:-require} host=${PGHOST} port=${PGPORT} user=${PGUSER} dbname=${PGDATABASE}" -c "select 1 from public_metrics.metrics_exposure_timeseries limit 1;"
+          PGPASSWORD="${PGPASSWORD}" psql "sslmode=${PGSSLMODE:-require} host=${PGHOST} port=${PGPORT} user=${PGUSER} dbname=${PGDATABASE}" -c "select 1 from public.dim_dbt__models limit 1;"
+        env:
+          PGHOST: ${{ secrets.EVIDENCE_SOURCE__postgres__host }}
+          PGPORT: ${{ secrets.EVIDENCE_SOURCE__postgres__port }}
+          PGDATABASE: ${{ secrets.EVIDENCE_SOURCE__postgres__database }}
+          PGUSER: ${{ secrets.EVIDENCE_SOURCE__postgres__user }}
+          PGPASSWORD: ${{ secrets.EVIDENCE_SOURCE__postgres__password }}
+          PGSSLMODE: require
+
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
