@@ -2,7 +2,7 @@ select
     company_id,
     company_name,
     case
-        when website ~* '^https?://' then website
+        when lower(coalesce(website, '')) like 'http%' then website
         when coalesce(website, '') <> '' then 'https://' || website
         else null
     end as website,
