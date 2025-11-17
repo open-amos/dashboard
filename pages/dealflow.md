@@ -44,6 +44,9 @@ queries:
 <Dropdown data={countries} name=country value=country_code label=country_name defaultValue="ALL">
   <DropdownOption value="ALL" valueLabel="All Countries" />
 </Dropdown>
+<Dropdown data={industries} name=industry value=industry_id label=industry_name defaultValue="ALL">
+  <DropdownOption value="ALL" valueLabel="All Industries" />
+</Dropdown>
 
 <AreaChart
   data={exposure_forecasts}
@@ -84,29 +87,3 @@ queries:
   fmt="mmm yyyy"
   size="large"
 />
-
-## Monitor exposure by industry
-
-<Dropdown data={funds} name=fund value=fund_id label=fund_name defaultValue="ALL">
-  <DropdownOption value="ALL" valueLabel="All Funds" />
-</Dropdown>
-<Dropdown data={stages} name=stage value=stage_id label=stage_name defaultValue="ALL">
-  <DropdownOption value="ALL" valueLabel="All Stages" />
-</Dropdown>
-<Dropdown data={industries} name=industry value=industry_id label=industry_name defaultValue="ALL">
-  <DropdownOption value="ALL" valueLabel="All Industries" />
-</Dropdown>
-
-<AreaChart
-  data={exposure_forecasts}
-  title="Exposure by Industry Over Time"
-  subtitle="{inputs.fund.label || 'All Funds'} | Stage: {inputs.stage.label || 'All Stages'} | {inputs.industry.label || 'All Industries'}"
-  type="stacked"
-  x=month 
-  y=total_exposure_usd
-  series=period_type
-  seriesOrder={["Current","Forecast"]}
-  height={360}
-/>
-
- 
