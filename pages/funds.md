@@ -2,6 +2,7 @@
 title: Funds
 queries:
   - fund_performance_overview: metrics/fund_performance_overview.sql
+  - funds_list: metrics/funds_list.sql
   - funds: dimensions/funds.sql
 ---
 
@@ -34,18 +35,20 @@ queries:
   title="Total Distributions"
 />
 
-### Fund Performance Overview
+### Funds Overview
 
 <DataTable 
-  data={fund_performance_overview}
+  data={funds_list}
   rows=20
+  link=fund_link
 >
   <Column id=fund_name title="Fund Name" />
-  <Column id=period_end_date title="Period End" fmt="mmm yyyy" />
   <Column id=fund_nav title="Fund NAV" fmt="usd0" />
   <Column id=tvpi title="TVPI" fmt="num1" />
   <Column id=dpi title="DPI" fmt="num1" />
   <Column id=rvpi title="RVPI" fmt="num1" />
+  <Column id=total_commitments title="Total Commitments" fmt="usd0" />
+  <Column id=unfunded_commitment title="Unfunded" fmt="usd0" />
   <Column id=number_of_portfolio_companies title="Portfolio Companies" />
 </DataTable>
 
