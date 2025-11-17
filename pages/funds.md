@@ -6,13 +6,7 @@ queries:
   - funds: dimensions/funds.sql
 ---
 
-## Fund-Level Performance Metrics
-
-<Dropdown data={funds} name=fund_id value=fund_id label=fund_name defaultValue="ALL">
-  <DropdownOption value="ALL" valueLabel="All Funds" />
-</Dropdown>
-
-### Key Metrics
+## Key Metrics
 
 <BigValue 
   data={fund_performance_overview} 
@@ -35,7 +29,7 @@ queries:
   title="Total Distributions"
 />
 
-### Funds Overview
+## Funds Overview
 
 <DataTable 
   data={funds_list}
@@ -52,7 +46,7 @@ queries:
   <Column id=number_of_portfolio_companies title="Portfolio Companies" />
 </DataTable>
 
-### TVPI Comparison Across Funds
+## TVPI Comparison Across Funds
 
 <BarChart 
   data={fund_performance_overview}
@@ -63,7 +57,7 @@ queries:
   swapXY=true
 />
 
-### Fund NAV Over Time
+## Fund NAV Over Time
 
 <BarChart 
   data={fund_performance_overview}

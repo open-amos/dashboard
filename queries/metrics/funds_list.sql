@@ -20,7 +20,6 @@ where f.period_end_date = (
     from metrics_fund_performance
     where fund_id = f.fund_id
 )
-and ('${inputs.fund_id.value}' = 'ALL' or f.fund_id = '${inputs.fund_id.value}')
 group by
     f.fund_id, f.fund_name, f.period_end_date, f.fund_nav,
     f.total_commitments, f.unfunded_commitment,

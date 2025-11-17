@@ -22,7 +22,6 @@ from metrics_fund_performance f
 left join metrics_position_performance p
     on f.fund_id = p.fund_id
     and f.period_end_date = p.period_end_date
-where '${inputs.fund_id.value}' = 'ALL' or f.fund_id = '${inputs.fund_id.value}'
 group by
     f.fund_id, f.fund_name, f.period_end_date, f.fund_nav,
     f.total_commitments, f.total_called_capital, f.unfunded_commitment,

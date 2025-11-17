@@ -10,7 +10,39 @@ queries:
   - selected_month_label: helpers/selected_month_label.sql
   - exposure_forecasts: metrics/exposure_forecasts.sql
   - exposure_map: metrics/exposure_map.sql
+  - opportunities_by_stage: dimensions/opportunities_by_stage.sql
+  - pipeline_funnel: metrics/pipeline_funnel.sql
 ---
+
+## Pipeline Overview
+
+<FunnelChart
+  data={pipeline_funnel}
+  title="Deal Pipeline by Stage"
+  nameCol=stage_name
+  valueCol=total_expected_investment
+  valueFmt=usd0
+  labelPosition=inside
+/>
+
+## Active Opportunities by Stage
+
+{#each [...new Set(opportunities_by_stage.map(d => d.stage_name))] as stage}
+
+### {stage}
+
+<DataTable
+  data={opportunities_by_stage.filter(d => d.stage_name === stage)}
+  rows=10
+>
+  <Column id=opportunity_name title="Opportunity" />
+  <Column id=company_name title="Company" />
+  <Column id=expected_investment_amount title="Expected Investment" fmt=usd0 />
+  <Column id=expected_close_date title="Expected Close" fmt=mmm-dd-yyyy />
+  <Column id=fund_name title="Fund" />
+</DataTable>
+
+{/each}
 
 ## Forecast the impact of upcoming deals on your portfolio
 
