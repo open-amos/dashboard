@@ -2,7 +2,7 @@
 title: AMOS Data Platform
 ---
 
-A demo environment illustrating how **Acme Capital**—a fictional private equity and private credit firm—can analyze funds, companies, deal pipeline, and performance metrics in one place.
+A demo environment illustrating how AMOS helps private market firms analyze funds, companies, deal pipeline, and performance metrics in one place.
 
 <div class="mx-auto max-w-6xl mt-8">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -74,4 +74,4 @@ A demo environment illustrating how **Acme Capital**—a fictional private equit
 
 ## About AMOS
 
-This demo is powered by [AMOS](https://github.com/open-amos), the open data stack for private market funds, and is based on sample data. The codebase is fully open source and can be deployed by internal teams or managed by AMOS.
+This demo is powered by [AMOS](https://github.com/open-amos), the open data stack for private market funds, and is based on sample data. The codebase is fully open source, allowing teams to connect their systems, customize BI dashboards and automate workflows. It can be deployed by internal teams or managed by AMOS.
