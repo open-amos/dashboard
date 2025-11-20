@@ -23,6 +23,27 @@ queries:
   />
   <BigValue 
     data={latest_metrics} 
+    value=tvpi_portfolio
+    fmt="num1"
+    title="TVPI"
+  />
+  <BigValue 
+    data={latest_metrics} 
+    value=dpi_portfolio
+    fmt="num1"
+    title="DPI"
+  />
+  <BigValue 
+    data={latest_metrics} 
+    value=rvpi_portfolio
+    fmt="num1"
+    title="RVPI"
+  />
+</Grid>
+
+<Grid cols=4>
+  <BigValue 
+    data={latest_metrics} 
     value=total_commitments
     fmt="usd0"
     title="Total Commitments"
@@ -31,28 +52,13 @@ queries:
     data={latest_metrics} 
     value=total_unfunded_commitment
     fmt="usd0"
-    title="Total Unfunded"
+    title="Unfunded Commitment"
   />
   <BigValue 
     data={latest_metrics} 
-    value=dpi_portfolio
-    fmt="num2"
-    title="DPI"
-  />
-</Grid>
-
-<Grid cols=3>
-  <BigValue 
-    data={latest_metrics} 
-    value=tvpi_portfolio
-    fmt="num2"
-    title="TVPI"
-  />
-  <BigValue 
-    data={latest_metrics} 
-    value=number_of_funds
-    fmt="num0"
-    title="Number of Funds"
+    value=total_distributions
+    fmt="usd0"
+    title="Total Distributions"
   />
   <BigValue 
     data={latest_metrics} 
