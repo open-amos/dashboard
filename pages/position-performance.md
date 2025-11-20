@@ -23,6 +23,7 @@ queries:
 <DataTable 
   data={position_performance_overview}
   rows=20
+  search=true
 >
   <Column id=instrument_name title="Instrument" />
   <Column id=company_name title="Company" />
