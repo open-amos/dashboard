@@ -1,3 +1,5 @@
+-- Simplified query using metrics_exposure_timeseries
+-- Current exposure remains constant, Forecast shows cumulative pipeline
 with filtered as (
   select
     date_trunc('month', cast(exposure_month as timestamp)) as month,
@@ -11,32 +13,35 @@ with filtered as (
     and (region = '${inputs.region.value}' or '${inputs.region.value}' = 'ALL' or '${inputs.region.value}' is null)
     and (country_code = '${inputs.country.value}' or '${inputs.country.value}' = 'ALL' or '${inputs.country.value}' is null)
     and (industry_id = '${inputs.industry.value}' or '${inputs.industry.value}' = 'ALL' or '${inputs.industry.value}' is null)
-), months as (
-  select distinct month from filtered
-), first_current_month as (
-  select min(month) as min_month from filtered where period_type = 'Current'
-), current_base as (
-  select sum(coalesce(deployed_capital_usd, 0)) as current_value
+),
+current_baseline as (
+  select sum(deployed_capital_usd) as baseline_exposure
   from filtered
   where period_type = 'Current'
-    and month = (select min_month from first_current_month)
-), current_series as (
-  select m.month, 'Current' as period_type, coalesce(cb.current_value, 0) as total_exposure_usd
-  from months m
-  cross join current_base cb
-), forecast_series as (
-  select m.month, 'Forecast' as period_type, coalesce(fc.total_exposure_usd, 0) as total_exposure_usd
-  from months m
-  left join (
-    select month, sum(coalesce(closed_pipeline_usd, 0)) as total_exposure_usd
-    from filtered
-    where period_type = 'Forecast'
-    group by 1
-  ) fc on fc.month = m.month
+),
+all_months as (
+  select distinct month from filtered
+),
+current_series as (
+  select 
+    m.month,
+    'Current' as period_type,
+    cb.baseline_exposure as total_exposure_usd
+  from all_months m
+  cross join current_baseline cb
+),
+forecast_series as (
+  select
+    month,
+    'Forecast' as period_type,
+    sum(closed_pipeline_usd) as total_exposure_usd
+  from filtered
+  where period_type = 'Forecast'
+  group by month
 )
-select * from forecast_series
-union all
 select * from current_series
-order by month asc
+union all
+select * from forecast_series
+order by month asc, period_type
 
 

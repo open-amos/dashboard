@@ -1,21 +1,13 @@
 -- Purpose: List opportunities grouped by stage for deal flow page
--- Source: dim_opportunities with related dimensions
+-- Source: dim_opportunities with dimension joins using bridge tables
 -- Filters for active pipeline opportunities (not Declined or Committed)
 
-with latest_company_info as (
-    select distinct on (company_id)
-        company_id,
-        primary_country,
-        primary_industry
-    from metrics_company_performance
-    order by company_id, period_end_date desc
-)
 select
     opp.opportunity_id,
     opp.name as opportunity_name,
     comp.name as company_name,
-    lci.primary_country,
-    lci.primary_industry,
+    c.name as primary_country,
+    ind.name as primary_industry,
     opp.stage_id,
     stg.name as stage_name,
     stg."order" as stage_order,
@@ -29,8 +21,16 @@ inner join dim_funds f
     on opp.fund_id = f.fund_id
 left join dim_companies comp 
     on opp.company_id = comp.company_id
-left join latest_company_info lci
-    on opp.company_id = lci.company_id
+left join br_opportunity_countries boc
+    on opp.opportunity_id = boc.opportunity_id
+    and boc.primary_flag = true
+left join dim_countries c
+    on boc.country_code = c.country_iso2_code
+left join br_opportunity_industries boi
+    on opp.opportunity_id = boi.opportunity_id
+    and boi.primary_flag = true
+left join dim_industries ind
+    on boi.industry_id = ind.industry_id
 where stg.name not in ('Declined', 'Committed')
   and opp.close_date is not null
 order by stg."order" desc, opp.close_date
