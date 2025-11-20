@@ -139,7 +139,7 @@ queries:
   y=gross_moic
   size=cumulative_invested
   series=instrument_type
-  label=instrument_name
+  tooltipTitle=instrument_name
   xFmt="pct1"
   yFmt="num1"
   title="MOIC vs IRR by Position"

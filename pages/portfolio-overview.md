@@ -10,8 +10,6 @@ queries:
   - portfolio_positions: metrics/portfolio_positions.sql
 ---
 
-# Portfolio Performance
-
 ## Key Performance Indicators
 
 <Grid cols=4>
@@ -133,7 +131,7 @@ queries:
   y=gross_moic
   size=cumulative_invested
   series=fund_name
-  label=instrument_name
+  tooltipTitle=instrument_name
   xFmt="pct1"
   yFmt="num1"
   title="MOIC vs IRR"
