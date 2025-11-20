@@ -85,23 +85,23 @@ queries:
 
 <Grid cols=2>
   <div>
-    ### Sector Exposure
     <BarChart 
       data={sector_exposure} 
       x=industry_name 
       y=exposure_usd
       yFmt="usd0"
       swapXY=true
+      title="Sector Exposure"
     />
   </div>
   <div>
-    ### Country Exposure
     <BarChart 
       data={country_exposure} 
       x=country_name 
       y=exposure
       yFmt="usd0"
       swapXY=true
+      title="Country Exposure"
     />
   </div>
 </Grid>
@@ -110,11 +110,11 @@ queries:
 
 <Grid cols=2>
   <div>
-    ### Top 10 Contributors
     <DataTable 
       data={top_contributors}
       rows=10
       link=company_link
+      title="Top 10 Contributors"
     >
       <Column id=company_name title="Company" />
       <Column id=fund_name title="Fund" />
@@ -124,11 +124,11 @@ queries:
     </DataTable>
   </div>
   <div>
-    ### Top 10 Detractors
     <DataTable 
       data={top_detractors}
       rows=10
       link=company_link
+      title="Top 10 Detractors"
     >
       <Column id=company_name title="Company" />
       <Column id=fund_name title="Fund" />
