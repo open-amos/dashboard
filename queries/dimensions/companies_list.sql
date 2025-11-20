@@ -1,5 +1,6 @@
 -- Purpose: List all companies with key attributes for the overview table
--- Returns the latest record per company with fund and instrument counts
+-- Returns companies with fund and instrument counts (including instruments without snapshots)
+-- Uses metrics_company_performance for company attributes but dim_instruments for counts
 
 with latest_companies as (
     select distinct on (company_id)
@@ -16,11 +17,8 @@ company_metrics as (
         company_id,
         count(distinct fund_id) as fund_count,
         count(distinct instrument_id) as instrument_count
-    from metrics_position_performance
-    where period_end_date = (
-        select max(period_end_date)
-        from metrics_position_performance
-    )
+    from dim_instruments
+    where company_id is not null
     group by company_id
 )
 select
