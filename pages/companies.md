@@ -6,9 +6,7 @@ queries:
   - company_performance_overview: metrics/company_performance_overview.sql
 ---
 
-## Portfolio Companies Overview
-
-### Companies
+## Companies
 
 <DataTable 
   data={companies_list}
@@ -22,7 +20,7 @@ queries:
   <Column id=number_of_instruments title="Number of Instruments" fmt="num0" />
 </DataTable>
 
-### Company Composition
+## Company Composition
 
 <Grid cols=2>
 
@@ -52,7 +50,7 @@ queries:
 
 </Grid>
 
-### Revenue by Company
+## Revenue by Company
 
 <BarChart 
   data={company_performance_overview}
