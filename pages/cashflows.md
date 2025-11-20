@@ -7,11 +7,16 @@ queries:
 
 ## Cashflow Analysis
 
+### Filters
+
 <Dropdown data={funds} name=fund_id value=fund_id label=fund_name defaultValue="ALL">
   <DropdownOption value="ALL" valueLabel="All Funds" />
 </Dropdown>
 
-### Cashflows Over Time
+<DateRange 
+  name=date_range
+  title="Date Range"
+/>
 
 <AreaChart 
   data={returns_cashflows_timeseries}
@@ -20,17 +25,15 @@ queries:
   series=direction
   type="stacked"
   yFmt="usd0"
-  title="Cashflows by Direction"
+  title="Cashflows Over Time"
 />
-
-### Cashflow Breakdown by Type
 
 <BarChart 
   data={returns_cashflows_timeseries}
   x=cashflow_type
   y=cashflow_amount
   yFmt="usd0"
-  title="Cashflow by Type"
+  title="Cashflow Breakdown by Type"
   swapXY=true
 />
 
