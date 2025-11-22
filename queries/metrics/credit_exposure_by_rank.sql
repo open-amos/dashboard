@@ -17,12 +17,12 @@ select
     -- Average metrics by rank
     avg(all_in_yield) as avg_yield,
     avg(spread_bps) as avg_spread_bps
-from public_metrics.metrics_position_performance
+from metrics_position_performance
 where instrument_type = 'CREDIT'
     and security_rank is not null
     and period_end_date = (
         select max(period_end_date) 
-        from public_metrics.metrics_position_performance
+        from metrics_position_performance
     )
 group by security_rank
 order by total_principal_outstanding desc

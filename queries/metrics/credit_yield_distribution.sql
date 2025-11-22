@@ -24,12 +24,12 @@ select
         when all_in_yield >= 0.12 then '12%+'
         else 'Unknown'
     end as yield_bucket
-from public_metrics.metrics_position_performance
+from metrics_position_performance
 where instrument_type = 'CREDIT'
     and all_in_yield is not null
     and period_end_date = (
         select max(period_end_date) 
-        from public_metrics.metrics_position_performance
+        from metrics_position_performance
     )
 group by security_rank, interest_index, yield_bucket
 order by security_rank, avg_yield desc
