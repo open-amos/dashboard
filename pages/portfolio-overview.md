@@ -2,6 +2,7 @@
 title: Portfolio Overview
 queries:
   - equity_portfolio_metrics: metrics/equity_portfolio_metrics.sql
+  - equity_portfolio_timeseries: metrics/equity_portfolio_timeseries.sql
   - credit_portfolio_metrics: metrics/credit_portfolio_metrics.sql
   - sector_exposure: metrics/sector_exposure.sql
   - country_exposure: metrics/country_exposure.sql
@@ -77,6 +78,26 @@ queries:
       title="Portfolio Companies"
     />
   </Grid>
+
+  ### NAV Trend
+
+  <LineChart 
+    data={equity_portfolio_timeseries} 
+    x=period_end_date 
+    y=total_nav
+    yFmt="usd0"
+    title="Equity Portfolio NAV Over Time"
+  />
+
+  ### Net Cashflow
+
+  <AreaChart 
+    data={equity_portfolio_timeseries} 
+    x=period_end_date 
+    y=net_cash_contributions_period
+    yFmt="usd0"
+    title="Net Cash Contributions by Period (Equity)"
+  />
 
   ### Exposure Analysis
 
