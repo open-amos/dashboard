@@ -1,4 +1,5 @@
 ---
+prerender: false
 queries:
   - company_info: dimensions/company_info.sql
   - company_financials: metrics/company_financials_timeseries.sql
