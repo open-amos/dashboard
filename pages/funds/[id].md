@@ -143,14 +143,14 @@ queries:
 
 <ScatterPlot 
   data={fund_instruments.filter(d => d.instrument_type === 'EQUITY')}
-  x=equity_irr
+  x=equity_irr_approx
   y=moic
-  size=cumulative_invested
+  size=cost_basis
   tooltipTitle=instrument_name
   xFmt="pct1"
   yFmt="num1"
-  title="MOIC vs IRR by Position"
-  xAxisTitle="Gross IRR"
+  title="MOIC vs IRR (Approx) by Position"
+  xAxisTitle="Approx IRR"
   yAxisTitle="Gross MOIC"
 />
 
@@ -165,7 +165,7 @@ queries:
   <Column id=cumulative_invested title="Invested" fmt=usd0 />
   <Column id=fair_value title="Fair Value" fmt=usd0 />
   <Column id=total_value title="Total Value" fmt=usd0 />
-  <Column id=equity_irr title="IRR" fmt=pct1 />
+  <Column id=equity_irr_approx title="IRR (Approx)" fmt=pct1 />
   <Column id=moic title="MOIC" fmt=num1 contentType=bar />
   <Column id=ownership_pct_current title="Ownership %" fmt=pct1 />
 </DataTable>

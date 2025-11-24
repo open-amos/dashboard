@@ -23,7 +23,7 @@ select
     mpp.realized_proceeds,
     coalesce(mpp.realized_proceeds, 0) + coalesce(mpp.fair_value, 0) as total_value,
     mpp.moic,
-    mpp.equity_irr,
+    mpp.equity_irr_approx,
     mpp.ownership_pct_current,
     mpp.holding_period_years,
     -- Credit-specific fields

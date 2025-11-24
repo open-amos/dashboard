@@ -15,7 +15,7 @@ select
     mpp.realized_proceeds,
     mpp.fair_value,
     mpp.moic,
-    mpp.equity_irr,
+    mpp.equity_irr_approx,
     mpp.ownership_pct_current,
     
     -- Credit metrics

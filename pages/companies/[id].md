@@ -74,9 +74,9 @@ Primary country: {company_info[0].primary_country}
   <Column id=exit_date title="Exit Date" />
   <Column id=cumulative_invested title="Invested" fmt=usd0 />
   <Column id=fair_value title="Fair Value" fmt=usd0 />
-  <Column id=cumulative_distributions title="Distributions" fmt=usd0 />
+  <Column id=realized_proceeds title="Realized Proceeds" fmt=usd0 />
   <Column id=moic title="MOIC" fmt=num1 />
-  <Column id=equity_irr title="IRR" fmt=pct1 />
+  <Column id=equity_irr_approx title="IRR (Approx)" fmt=pct1 />
   <Column id=ownership_pct_current title="Ownership %" fmt=pct1 />
 </DataTable>
 

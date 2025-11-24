@@ -143,15 +143,15 @@ queries:
 
   <ScatterPlot 
     data={portfolio_positions.filter(d => d.instrument_type === 'EQUITY')}
-    x=gross_irr
+    x=gross_irr_approx
     y=gross_moic
-    size=cumulative_invested
+    size=cost_basis
     series=fund_name
     tooltipTitle=instrument_name
     xFmt="pct1"
     yFmt="num1"
-    title="MOIC vs IRR (Equity)"
-    xAxisTitle="Gross IRR"
+    title="MOIC vs IRR (Approx) - Equity"
+    xAxisTitle="Approx IRR"
     yAxisTitle="Gross MOIC"
   />
 
@@ -171,7 +171,7 @@ queries:
         <Column id=fund_name title="Fund" />
         <Column id=total_return title="Total Return" fmt="usd0" />
         <Column id=moic title="MOIC" fmt="num2" />
-        <Column id=irr title="IRR" fmt="pct1" />
+        <Column id=irr_approx title="IRR (Approx)" fmt="pct1" />
       </DataTable>
     </div>
     <div>
@@ -185,7 +185,7 @@ queries:
         <Column id=fund_name title="Fund" />
         <Column id=total_return title="Total Return" fmt="usd0" />
         <Column id=moic title="MOIC" fmt="num2" />
-        <Column id=irr title="IRR" fmt="pct1" />
+        <Column id=irr_approx title="IRR (Approx)" fmt="pct1" />
       </DataTable>
     </div>
   </Grid>

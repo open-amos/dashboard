@@ -17,7 +17,7 @@ select
     mpp.fair_value as current_fair_value,
     (mpp.fair_value + coalesce(mpp.realized_proceeds, 0)) as total_value,
     mpp.moic as gross_moic,
-    mpp.equity_irr as gross_irr,
+    mpp.equity_irr_approx as gross_irr_approx,
     mpp.holding_period_years
 from metrics_position_performance mpp
 inner join latest_instrument_snapshots lis

@@ -7,7 +7,7 @@ select
     fair_value as current_fair_value,
     (coalesce(realized_proceeds, 0) + coalesce(fair_value, 0)) as total_value,
     moic as gross_moic, 
-    equity_irr as gross_irr,
+    equity_irr_approx as gross_irr_approx,
     ownership_pct_initial, ownership_pct_current, holding_period_years
 from metrics_position_performance
 where ('${inputs.fund_id.value}' = 'ALL' or fund_id = '${inputs.fund_id.value}')
