@@ -1,42 +1,54 @@
 -- Pipeline stage velocity and conversion metrics
-with opportunity_ages as (
+-- Note: Conversion rates use funnel-style calculation (cumulative approach)
+-- since we don't have historical stage transitions
+with stage_data as (
     select
         opp.opportunity_id,
+        opp.amount,
         stg.name as stage_name,
         stg."order" as stage_order,
-        current_date - opp.created_at::date as days_in_pipeline,
-        opp.close_date::date - current_date as days_to_close
+        current_date - opp.created_at::date as days_in_pipeline
     from dim_opportunities opp
     inner join dim_stages stg on opp.stage_id = stg.stage_id
-    where stg.name not in ('Lost', 'Declined', 'Signed')
+    where stg.name not in ('Lost', 'Declined')
       and (opp.fund_id = '${inputs.fund.value}' or '${inputs.fund.value}' = 'ALL' or '${inputs.fund.value}' is null)
 ),
 stage_metrics as (
     select
         stage_name,
         stage_order,
-        count(*) as deal_count,
-        avg(days_in_pipeline) as avg_days_in_stage,
-        avg(days_to_close) as avg_days_to_close
-    from opportunity_ages
+        count(distinct opportunity_id) as deal_count,
+        sum(amount) as pipeline_value,
+        avg(days_in_pipeline) as avg_days_in_stage
+    from stage_data
     group by stage_name, stage_order
 ),
-conversion_metrics as (
+cumulative_counts as (
     select
-        count(distinct case when stg.name = 'Sourced' then opp.opportunity_id end) as sourced_total,
-        count(distinct case when stg.name in ('Investment Committee', 'Term Sheet', 'Signed') then opp.opportunity_id end) as reached_ic,
-        count(distinct case when stg.name = 'Signed' then opp.opportunity_id end) as closed_total
-    from dim_opportunities opp
-    inner join dim_stages stg on opp.stage_id = stg.stage_id
-    where (opp.fund_id = '${inputs.fund.value}' or '${inputs.fund.value}' = 'ALL' or '${inputs.fund.value}' is null)
+        stage_name,
+        stage_order,
+        deal_count,
+        pipeline_value,
+        avg_days_in_stage,
+        -- Cumulative count from this stage forward (this + all later stages)
+        sum(deal_count) over (
+            order by stage_order 
+            rows between current row and unbounded following
+        ) as cumulative_deals_from_here
+    from stage_metrics
 )
 select
-    sm.*,
-    cm.sourced_total,
-    cm.reached_ic,
-    cm.closed_total,
-    case when cm.sourced_total > 0 then cm.reached_ic::float / cm.sourced_total else 0 end as sourced_to_ic_rate,
-    case when cm.reached_ic > 0 then cm.closed_total::float / cm.reached_ic else 0 end as ic_to_closed_rate
-from stage_metrics sm
-cross join conversion_metrics cm
-order by sm.stage_order
+    stage_name,
+    stage_order,
+    deal_count,
+    pipeline_value,
+    avg_days_in_stage,
+    -- Conversion = (deals in next+ stages) / (deals in current+ stages)
+    -- Example: Stage B conversion = (C+D+E deals) / (B+C+D+E deals)
+    case 
+        when cumulative_deals_from_here > deal_count 
+        then (cumulative_deals_from_here - deal_count)::float / cumulative_deals_from_here
+        else null 
+    end as conversion_to_next_stage
+from cumulative_counts
+order by stage_order

@@ -99,76 +99,22 @@ queries:
 
 <hr class="my-6">
 
-## Active Opportunities
-
-<Note>{inputs.fund.label}</Note>
-
-<DataTable
-  data={opportunities_by_stage}
-  rows=20
->
-  <Column id=stage_name title="Stage" contentType=colorscale scaleColor={['#bfbfbeff','white','#6db678']} scaleColumn=stage_order />
-  <Column id=opportunity_name title="Opportunity" />
-  <Column id=company_name title="Company" />
-  <Column id=primary_country title="Country" />
-  <Column id=primary_industry title="Industry" />
-  <Column id=expected_investment_amount title="Expected Ticket" fmt=usd0 />
-  <Column id=expected_close_date title="Expected Close" fmt=mmm-dd-yyyy />
-  <Column id=fund_name title="Fund" />
-  <Column id=stage_order title="Stage Order" hidden />
-</DataTable>
-
-<hr class="my-6">
-
 ## Pipeline Velocity & Conversion
 
-<Note>{inputs.fund.label}</Note>
+<DataTable
+  data={pipeline_velocity}
+  rows=all
+>
+  <Column id=stage_name title="Stage" />
+  <Column id=deal_count title="Deal Count" fmt="num0" />
+  <Column id=pipeline_value title="Pipeline Value" fmt="usd0" />
+  <Column id=avg_days_in_stage title="Avg Days in Stage" contentType=bar fmt="num0" />
+  <Column id=conversion_to_next_stage title="Conversion to Next Stage" contentType=bar barColor=#ffe08a fmt="pct1" />
+</DataTable>
 
-<Grid cols=3>
-  <BigValue 
-    data={pipeline_velocity.filter(d => d.stage_name === 'Sourced')}
-    value=avg_days_in_stage
-    fmt="num0"
-    title="Avg Days in Sourced"
-    emptySet="pass"
-    emptyMessage="-"
-  />
-  <BigValue 
-    data={pipeline_velocity.filter(d => d.stage_name === 'Screening')}
-    value=avg_days_in_stage
-    fmt="num0"
-    title="Avg Days in Screening"
-    emptySet="pass"
-    emptyMessage="-"
-  />
-  <BigValue 
-    data={pipeline_velocity.filter(d => d.stage_name === 'Investment Committee')}
-    value=avg_days_in_stage
-    fmt="num0"
-    title="Avg Days in IC"
-    emptySet="pass"
-    emptyMessage="-"
-  />
-</Grid>
-
-<Grid cols=2>
-  <BigValue 
-    data={pipeline_velocity}
-    value=sourced_to_ic_rate
-    fmt="pct0"
-    title="Sourced → IC Conversion"
-    emptySet="pass"
-    emptyMessage="-"
-  />
-  <BigValue 
-    data={pipeline_velocity}
-    value=ic_to_closed_rate
-    fmt="pct0"
-    title="IC → Closed Conversion"
-    emptySet="pass"
-    emptyMessage="-"
-  />
-</Grid>
+<Note>
+Note: Conversion rates exclude {pipeline_overview[0].lost_count} lost deals, as the dataset doesn't track which stage they were lost from. To calculate accurate conversion rates that account for lost deals, implement stage transition history tracking.
+</Note>
 
 <hr class="my-6">
 
@@ -228,3 +174,24 @@ queries:
   fmt="mmm yyyy"
   size="large"
 />
+
+<hr class="my-6">
+
+## Active Opportunities
+
+<Note>{inputs.fund.label}</Note>
+
+<DataTable
+  data={opportunities_by_stage}
+  rows=20
+>
+  <Column id=stage_name title="Stage" contentType=colorscale scaleColor={['#bfbfbeff','white','#6db678']} scaleColumn=stage_order />
+  <Column id=opportunity_name title="Opportunity" />
+  <Column id=company_name title="Company" />
+  <Column id=primary_country title="Country" />
+  <Column id=primary_industry title="Industry" />
+  <Column id=expected_investment_amount title="Expected Ticket" fmt=usd0 />
+  <Column id=expected_close_date title="Expected Close" fmt=mmm-dd-yyyy />
+  <Column id=fund_name title="Fund" />
+  <Column id=stage_order title="Stage Order" hidden />
+</DataTable>
