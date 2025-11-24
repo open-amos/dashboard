@@ -4,11 +4,17 @@ queries:
   - company_financials: metrics/company_financials_timeseries.sql
   - company_financials_table: metrics/company_financials_table.sql
   - company_instruments: metrics/company_instruments.sql
+  - company_opportunities: dimensions/company_opportunities.sql
 ---
 
 <script>
   export const prerender = false;
 </script>
+
+```sql is_portfolio_company
+select case when count(*) > 0 then true else false end as is_portfolio
+from ${company_instruments}
+```
 
 ```sql equity_instruments
 select * from ${company_instruments}
@@ -30,6 +36,12 @@ from ${company_instruments}
 
 # {company_info[0].company_name}
 
+{#if is_portfolio_company[0].is_portfolio}
+<span class="badge badge-success">Portfolio Company</span>
+{:else}
+<span class="badge badge-info">Pipeline Company</span>
+{/if}
+
 Website: <Link url={company_info[0].website} label={company_info[0].website} />   
 Primary sector: {company_info[0].primary_industry}  
 Primary country: {company_info[0].primary_country}  
@@ -37,6 +49,8 @@ Primary country: {company_info[0].primary_country}
 {company_info[0].description} 
 
 <hr class="my-4" />
+
+{#if is_portfolio_company[0].is_portfolio}
 
 ## Investment Summary
 
@@ -177,5 +191,38 @@ No financial data available.
 {:else}
 
   No financial data available.
+
+{/if}
+
+{:else}
+
+## CRM Opportunities
+
+{#if company_opportunities.length > 0}
+
+{#each company_opportunities as opp}
+
+<Alert status="info">
+
+### {opp.opportunity_name}
+
+**Fund:** {opp.fund_name}  
+**Stage:** {opp.stage_name}  
+**Expected Close:** {opp.expected_close_date}  
+**Deal Size:** ${opp.deal_size?.toLocaleString() || 'N/A'}  
+**Lead Source:** {opp.lead_source}  
+**Owner:** {opp.owner_name}  
+**Created:** {opp.created_date}  
+**Last Modified:** {opp.last_modified_date}
+
+</Alert>
+
+{/each}
+
+{:else}
+
+No CRM opportunities found for this company.
+
+{/if}
 
 {/if}
