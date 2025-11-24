@@ -13,9 +13,9 @@ select
     mpp.company_name,
     mpp.fund_name,
     mpp.instrument_type,
-    mpp.cumulative_invested,
+    mpp.cost_basis,
     mpp.fair_value as current_fair_value,
-    (mpp.fair_value + coalesce(mpp.cumulative_distributions, 0)) as total_value,
+    (mpp.fair_value + coalesce(mpp.realized_proceeds, 0)) as total_value,
     mpp.moic as gross_moic,
     mpp.equity_irr as gross_irr,
     mpp.holding_period_years
@@ -23,5 +23,5 @@ from metrics_position_performance mpp
 inner join latest_instrument_snapshots lis
     on mpp.instrument_id = lis.instrument_id
     and mpp.period_end_date = lis.latest_period_end_date
-where mpp.cumulative_invested > 0
+where mpp.instrument_type = 'EQUITY' and mpp.cost_basis > 0
 order by mpp.moic desc

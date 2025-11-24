@@ -11,9 +11,8 @@ select
     coalesce(i.termination_date::text, '') as exit_date,
     
     -- Equity metrics
-    mpp.initial_cost,
-    mpp.cumulative_invested,
-    mpp.cumulative_distributions,
+    mpp.cost_basis,
+    mpp.realized_proceeds,
     mpp.fair_value,
     mpp.moic,
     mpp.equity_irr,

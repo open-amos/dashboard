@@ -18,10 +18,10 @@ select
     mpp.initial_investment_date,
     mpp.exit_date,
     -- Equity-specific fields
-    mpp.cumulative_invested,
+    mpp.cost_basis,
     mpp.fair_value,
-    mpp.cumulative_distributions,
-    coalesce(mpp.cumulative_distributions, 0) + coalesce(mpp.fair_value, 0) as total_value,
+    mpp.realized_proceeds,
+    coalesce(mpp.realized_proceeds, 0) + coalesce(mpp.fair_value, 0) as total_value,
     mpp.moic,
     mpp.equity_irr,
     mpp.ownership_pct_current,

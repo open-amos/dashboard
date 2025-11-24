@@ -10,12 +10,12 @@ select
   mp.instrument_name,
   mp.instrument_type,
   mp.fair_value as current_fair_value,
-  mp.cumulative_invested,
-  (mp.fair_value + coalesce(mp.cumulative_distributions, 0) - mp.cumulative_invested) as total_return,
+  mp.cost_basis,
+  (mp.fair_value + coalesce(mp.realized_proceeds, 0) - mp.cost_basis) as total_return,
   mp.moic,
   mp.equity_irr as irr
 from metrics_position_performance mp
 join latest on mp.period_end_date = latest.max_date
-where mp.cumulative_invested > 0
+where mp.instrument_type = 'EQUITY' and mp.cost_basis > 0
 order by total_return asc nulls last
 limit 20
