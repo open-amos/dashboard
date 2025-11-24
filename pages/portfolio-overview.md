@@ -312,6 +312,7 @@ queries:
         data={credit_maturity_ladder} 
         x=maturity_year 
         y=principal_maturing
+        xFmt="####"
         yFmt="usd0"
         title="Maturity Ladder"
         xAxisTitle="Maturity Year"
