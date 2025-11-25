@@ -3,6 +3,7 @@
 	import '../app.css';
 	import { EvidenceDefaultLayout } from '@evidence-dev/core-components';
 	import { base } from '$app/paths';
+	import ExportToWordButton from '$lib/ExportToWordButton.svelte';
 	export let data;
 </script>
 
@@ -14,3 +15,5 @@
 	githubRepo="https://github.com/open-amos">
 	<slot slot="content" />
 </EvidenceDefaultLayout>
+
+<ExportToWordButton />
