@@ -5,6 +5,8 @@ queries:
   - fund_instruments: metrics/fund_instruments.sql
   - fund_credit_maturity_ladder: metrics/fund_credit_maturity_ladder.sql
   - fund_credit_yield_distribution: metrics/fund_credit_yield_distribution.sql
+  - fund_sector_exposure: metrics/fund_sector_exposure.sql
+  - fund_country_exposure: metrics/fund_country_exposure.sql
 ---
 
 <script>
@@ -117,6 +119,34 @@ queries:
   x=period_end_date
   y=total_distributions
   yFmt=usd0
+/>
+
+</Grid>
+
+<hr class="my-4" />
+
+## Portfolio Exposure
+
+<Grid cols=2>
+
+<BarChart 
+  data={fund_sector_exposure}
+  x=industry_name
+  y=exposure
+  yFmt="usd0"
+  title="Sector Exposure"
+  swapXY=true
+  limit=10
+/>
+
+<BarChart 
+  data={fund_country_exposure}
+  x=country_name
+  y=exposure
+  yFmt="usd0"
+  title="Country Exposure"
+  swapXY=true
+  limit=10
 />
 
 </Grid>
@@ -319,6 +349,34 @@ No equity holdings found for this fund.
 No credit portfolio data available for analysis.
 
 {/if}
+
+<hr class="my-4" />
+
+## Portfolio Exposure
+
+<Grid cols=2>
+
+<BarChart 
+  data={fund_sector_exposure}
+  x=industry_name
+  y=exposure
+  yFmt="usd0"
+  title="Sector Exposure"
+  swapXY=true
+  limit=10
+/>
+
+<BarChart 
+  data={fund_country_exposure}
+  x=country_name
+  y=exposure
+  yFmt="usd0"
+  title="Country Exposure"
+  swapXY=true
+  limit=10
+/>
+
+</Grid>
 
 <hr class="my-4" />
 

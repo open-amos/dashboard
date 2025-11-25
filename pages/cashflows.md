@@ -8,8 +8,6 @@ queries:
   - credit_funds: dimensions/credit_funds.sql
 ---
 
-# Cashflow Analysis
-
 <Tabs color=primary>
 
 <Tab label="Equity Cashflows">

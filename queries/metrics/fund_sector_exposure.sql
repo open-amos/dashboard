@@ -1,9 +1,9 @@
+-- Sector exposure for a specific fund
 select 
-  country_code,
-  country_name,
-  instrument_type,
+  industry_name,
   sum(deployed_capital_usd) as exposure
 from metrics_exposure_timeseries
 where period_type = 'Current'
-group by country_code, country_name, instrument_type
+  and fund_id = '${params.id}'
+group by industry_name
 order by exposure desc
