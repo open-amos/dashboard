@@ -1,8 +1,8 @@
 ---
-title: AMOS Data Platform
+title: Welcome to AMOS
 ---
 
-A demo environment illustrating how AMOS helps private market firms analyze funds, companies, deal pipeline, and performance metrics in one place.
+A sample workspace demonstrating how private market firms can bring all their data together in one unified platform. Explore the modules below to see how connected data supports faster analysis, more reliable reporting, and powerful automation.
 
 <div class="mx-auto max-w-6xl mt-8">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -12,7 +12,7 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300 text-2xl">📈</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Portfolio Overview</div>
-          <div class="text-sm text-gray-500 mt-1">Portfolio-wide performance</div>
+          <div class="text-sm text-gray-500 mt-1">Portfolio-wide exposure, valuations, and performance metrics.</div>
         </div>
       </div>
     </a>
@@ -22,7 +22,7 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-300 text-2xl">💼</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Funds</div>
-          <div class="text-sm text-gray-500 mt-1">Fund performance and metrics</div>
+          <div class="text-sm text-gray-500 mt-1">Fund-level KPIs, performance trends, and holdings.</div>
         </div>
       </div>
     </a>
@@ -32,7 +32,7 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-300 text-2xl">🏢</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Companies</div>
-          <div class="text-sm text-gray-500 mt-1">Portfolio company details</div>
+          <div class="text-sm text-gray-500 mt-1">Operating details and exposure by portfolio company.</div>
         </div>
       </div>
     </a>
@@ -42,7 +42,7 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300 text-2xl">🎯</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Pipeline</div>
-          <div class="text-sm text-gray-500 mt-1">Deal opportunities</div>
+          <div class="text-sm text-gray-500 mt-1">Deal activity, stage progression, and expected deployment.</div>
         </div>
       </div>
     </a>
@@ -52,7 +52,7 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-300 text-2xl">💰</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Cashflows</div>
-          <div class="text-sm text-gray-500 mt-1">Returns and distributions</div>
+          <div class="text-sm text-gray-500 mt-1">Contributions, distributions, loan draws, and repayments.</div>
         </div>
       </div>
     </a>
@@ -62,7 +62,7 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-300 text-2xl">🤖</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">AI Assistant</div>
-          <div class="text-sm text-gray-500 mt-1">Chat with your data</div>
+          <div class="text-sm text-gray-500 mt-1">Query your data conversationally.</div>
         </div>
       </div>
     </a>
@@ -72,6 +72,6 @@ A demo environment illustrating how AMOS helps private market firms analyze fund
 
 <hr class="my-8" />
 
-## About AMOS
+## Fully Open-Source
 
-This demo is powered by [AMOS](https://github.com/open-amos), the open data stack for private market funds, and is based on sample data. The codebase is fully open source, allowing teams to connect their systems, customize BI dashboards and automate workflows. It can be deployed by internal teams or managed by AMOS.
+AMOS is an open-source data stack designed for private market funds. It connects to your operational systems, standardizes information into a unified model, and powers any analytics layer you prefer. You may reuse and adapt this workspace, or plug in your own BI tools (Metabase, Power BI, Tableau, etc.) or custom apps and dashboards. Teams can self-host AMOS, or use it as a managed service.

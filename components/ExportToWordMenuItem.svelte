@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { exportPageToWord } from './exportToWordUtil.js';
 
   export let pageTitle = '';
@@ -6,6 +7,35 @@
   export let maxTableRows = 100;
 
   let isExporting = false;
+  let menuItemElement;
+
+  onMount(() => {
+    setTimeout(() => {
+      // Find the Print PDF button in the dropdown menu
+      const printButton = document.querySelector('button[title="Print PDF"]') || 
+                         document.querySelector('button:has(svg)');
+      
+      if (printButton && menuItemElement) {
+        const dropdownMenu = printButton.closest('[role="menu"]') || 
+                            printButton.parentElement;
+        
+        if (dropdownMenu) {
+          // Insert after the Print PDF button
+          if (printButton.nextSibling) {
+            dropdownMenu.insertBefore(menuItemElement, printButton.nextSibling);
+          } else {
+            dropdownMenu.appendChild(menuItemElement);
+          }
+          menuItemElement.style.display = 'block';
+        }
+      }
+      
+      // Fallback: if we can't find the menu, don't show the button
+      if (!menuItemElement.parentElement || menuItemElement.parentElement === document.body) {
+        menuItemElement.style.display = 'none';
+      }
+    }, 100);
+  });
 
   async function handleExport() {
     if (isExporting) return;
@@ -23,9 +53,11 @@
 </script>
 
 <button 
+  bind:this={menuItemElement}
   on:click={handleExport}
   disabled={isExporting}
   class="menu-item"
+  style="display: none;"
 >
   {#if isExporting}
     Exporting...

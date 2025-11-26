@@ -7,6 +7,8 @@ queries:
 
 Create, customize and export fully automated reports for funds, portfolios, and internal analysis. All reports are generated in Word format so teams can refine the content, add commentary, and tailor the final document to their audience.
 
+<hr class="my-6" />
+
 ## Fund Reports (Quarterly)
 
 Select a fund to view and download its most recent report for LPs:
