@@ -7,22 +7,12 @@ A sample workspace demonstrating how private market firms can bring all their da
 <div class="mx-auto max-w-6xl mt-8">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     
-    <a href="/portfolio-overview" class="block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow p-6 no-underline">
+    <a href="/portfolio" class="block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow p-6 no-underline">
       <div class="flex flex-col items-center text-center gap-3">
         <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300 text-2xl">📈</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Portfolio Overview</div>
           <div class="text-sm text-gray-500 mt-1">Portfolio-wide exposure, valuations, and performance metrics.</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="/funds" class="block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow p-6 no-underline">
-      <div class="flex flex-col items-center text-center gap-3">
-        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-300 text-2xl">💼</span>
-        <div>
-          <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Funds</div>
-          <div class="text-sm text-gray-500 mt-1">Fund-level KPIs, performance trends, and holdings.</div>
         </div>
       </div>
     </a>
@@ -39,7 +29,7 @@ A sample workspace demonstrating how private market firms can bring all their da
 
     <a href="/pipeline" class="block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow p-6 no-underline">
       <div class="flex flex-col items-center text-center gap-3">
-        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300 text-2xl">🎯</span>
+        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300 text-2xl">🎯</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Pipeline</div>
           <div class="text-sm text-gray-500 mt-1">Deal activity, stage progression, and expected deployment.</div>
@@ -57,9 +47,19 @@ A sample workspace demonstrating how private market firms can bring all their da
       </div>
     </a>
 
+    <a href="/reports" class="block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow p-6 no-underline">
+      <div class="flex flex-col items-center text-center gap-3">
+        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300 text-2xl">📄</span>
+        <div>
+          <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Reports</div>
+          <div class="text-sm text-gray-500 mt-1">Generate and export automated reports.</div>
+        </div>
+      </div>
+    </a>
+
     <a href="/ai-assistant" class="block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-shadow p-6 no-underline">
       <div class="flex flex-col items-center text-center gap-3">
-        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-300 text-2xl">🤖</span>
+        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-50 text-sky-600 dark:bg-sky-900/30 dark:text-sky-300 text-2xl">🤖</span>
         <div>
           <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">AI Assistant</div>
           <div class="text-sm text-gray-500 mt-1">Query your data conversationally.</div>
