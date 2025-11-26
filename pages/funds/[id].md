@@ -7,6 +7,8 @@ queries:
   - fund_credit_yield_distribution: metrics/fund_credit_yield_distribution.sql
   - fund_sector_exposure: metrics/fund_sector_exposure.sql
   - fund_country_exposure: metrics/fund_country_exposure.sql
+  - equity_companies_count: metrics/fund_equity_companies_count.sql
+  - credit_positions_count: metrics/fund_credit_positions_count.sql
 ---
 
 <script>
@@ -75,8 +77,8 @@ queries:
 />
 
 <BigValue 
-  data={fund_key_metrics} 
-  value=number_of_portfolio_companies
+  data={equity_companies_count} 
+  value=company_count
   fmt="num0"
   title="Portfolio Companies"
 />
@@ -266,8 +268,8 @@ No equity holdings found for this fund.
 />
 
 <BigValue 
-  data={fund_key_metrics} 
-  value=number_of_positions
+  data={credit_positions_count} 
+  value=position_count
   fmt="num0"
   title="Number of Positions"
 />

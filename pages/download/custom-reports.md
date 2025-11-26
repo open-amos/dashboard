@@ -1,29 +1,19 @@
 ---
-title: LP Reports
+title: Custom Reports
 queries:
-  - funds_list: dimensions/funds.sql
+  - funds_list: metrics/funds_list.sql
+  - report_metadata: helpers/report_metadata.sql
 ---
 
-Download ready-made reports for each fund. These reports include performance metrics, portfolio holdings, sector and country exposure, and are ready to export to Word for editing and distribution to Limited Partners.
+Create, customize and export fully automated reports for funds, portfolios, and internal analysis. All reports are generated in Word format so teams can refine the content, add commentary, and tailor the final document to their audience.
 
-## Available Fund Reports
+## Fund Reports (Quarterly)
 
-Select a fund below to view and export its LP report:
-
-```sql funds_with_type
-select 
-  fund_id,
-  name as fund_name,
-  type as fund_type,
-  vintage,
-  'download/lp-reports/' || fund_id as report_link
-from dim_funds
-order by type, name
-```
+Select a fund to view and download its most recent report for LPs:
 
 <Grid cols=3>
 
-{#each funds_with_type as fund}
+{#each funds_list as fund}
 
 <a href={fund.report_link} class="card-link">
   <div class="fund-card">
@@ -31,11 +21,9 @@ order by type, name
       <h3>{fund.fund_name}</h3>
       <span class="fund-type {fund.fund_type}">{fund.fund_type}</span>
     </div>
-    {#if fund.vintage}
-    <div class="fund-vintage">
-      Vintage: {fund.vintage}
+    <div class="report-quarter">
+      {report_metadata[0].quarter_label}
     </div>
-    {/if}
     <div class="fund-action">
       View Report →
     </div>
@@ -45,10 +33,6 @@ order by type, name
 {/each}
 
 </Grid>
-
----
-
-*Reports are generated with the most recent data available. Click any fund card above to view its detailed report.*
 
 <style>
   .card-link {
@@ -109,7 +93,7 @@ order by type, name
     color: #065f46;
   }
 
-  .fund-vintage {
+  .report-quarter {
     color: #6b7280;
     font-size: 0.875rem;
     margin-bottom: 1rem;
