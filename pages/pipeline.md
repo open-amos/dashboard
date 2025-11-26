@@ -1,6 +1,6 @@
 ---
 title: Pipeline
-sidebar_position: 4
+sidebar_position: 3
 queries:
   - pipeline_overview: metrics/pipeline_overview.sql
   - pipeline_funnel: metrics/pipeline_funnel.sql

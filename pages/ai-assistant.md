@@ -1,6 +1,6 @@
 ---
 title: AI Assistant
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 This page will feature an AI assistant for querying your portfolio data.

@@ -1,6 +1,6 @@
 ---
 title: Companies
-sidebar_position: 3
+sidebar_position: 2
 queries:
   - companies_list: dimensions/companies_list.sql
   - companies_breakdown: metrics/companies_breakdown.sql
