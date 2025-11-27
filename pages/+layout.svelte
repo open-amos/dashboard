@@ -16,3 +16,13 @@
 	githubRepo="https://github.com/open-amos">
 	<slot slot="content" />
 </EvidenceDefaultLayout>
+
+<style>
+
+	/* Tab cursor fix */
+  :global([role="tab"]),
+  :global([role="tab"] *) {
+    cursor: pointer !important;
+  }
+
+</style>
