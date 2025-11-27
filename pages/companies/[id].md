@@ -34,23 +34,34 @@ select
 from ${company_instruments}
 ```
 
+<Grid cols=2>
+
 # {company_info[0].company_name}
 
-{#if is_portfolio_company[0].is_portfolio}
-<span class="badge badge-success">Portfolio Company</span>
-{:else}
-<span class="badge badge-info">Pipeline Company</span>
+<Image 
+    url={company_info[0].country_flag} 
+    description="Country flag"
+    height=40
+    align=right
+/> 
+
+</Grid>
+
+<div style="margin-top: 1rem; margin-bottom: 1rem;">
+
+{company_info[0].primary_country} | {company_info[0].primary_industry}  | <Link url={company_info[0].website} label={company_info[0].website} />
+
+</div>
+
+{#if company_info[0].description}
+<div style="margin-bottom: 2rem;">
+{company_info[0].description}
+</div>
 {/if}
 
-Website: <Link url={company_info[0].website} label={company_info[0].website} />   
-Primary sector: {company_info[0].primary_industry}  
-Primary country: {company_info[0].primary_country}  
-
-{company_info[0].description} 
-
-<hr class="my-4" />
-
 {#if is_portfolio_company[0].is_portfolio}
+
+<hr class="my-6">
 
 ## Investment Summary
 
@@ -75,11 +86,13 @@ Primary country: {company_info[0].primary_country}
   />
 </Grid>
 
-<hr class="my-4" />
+<div class="section-highlight">
 
 ## Equity Positions
 
 {#if equity_instruments.length > 0}
+
+<div class="section-highlight-chart">
 
 <DataTable data={equity_instruments}>
   <Column id=instrument_name title="Instrument" />
@@ -94,17 +107,23 @@ Primary country: {company_info[0].primary_country}
   <Column id=ownership_pct_current title="Ownership %" fmt=pct1 />
 </DataTable>
 
+</div>
+
 {:else}
 
 No equity positions.
 
 {/if}
 
-<hr class="my-4" />
+</div>
+
+<div class="section-highlight">
 
 ## Credit Positions
 
 {#if credit_instruments.length > 0}
+
+<div class="section-highlight-chart">
 
 <DataTable data={credit_instruments}>
   <Column id=instrument_name title="Instrument" />
@@ -120,17 +139,71 @@ No equity positions.
   <Column id=security_rank title="Security Rank" />
 </DataTable>
 
+</div>
+
 {:else}
 
 No credit positions.
 
 {/if}
 
-<hr class="my-4" />
+</div>
+
+<div class="section-highlight">
+
+## Financial Performance
+
+{#if company_financials.length}
+
+  <Grid cols=2>
+
+  <div class="section-highlight-chart">
+    <LineChart
+      data={company_financials}
+      title="Revenue Over Time"
+      x=period_end_date
+      y=revenue
+      yFmt=usd0
+    />
+  </div>
+
+  <div class="section-highlight-chart">
+    <LineChart
+      data={company_financials}
+      title="EBITDA Over Time"
+      x=period_end_date
+      y=ebitda
+      yFmt=usd0
+    />
+  </div>
+
+  </Grid>
+
+  <div class="section-highlight-chart">
+    <LineChart
+      data={company_financials}
+      title="EBITDA Margin"
+      x=period_end_date
+      y=ebitda_margin
+      yFmt=pct1
+    />
+  </div>
+
+{:else}
+
+  No financial data available.
+
+{/if}
+
+</div>
+
+<div class="section-highlight">
 
 ## Company Financials
 
 {#if company_financials_table.length}
+
+<div class="section-highlight-chart">
 
 <DataTable data={company_financials_table}>
   <Column id=period_end_date title="Period End Date" />
@@ -148,53 +221,19 @@ No credit positions.
   <Column id=reporting_currency title="Currency" />
 </DataTable>
 
+</div>
+
 {:else}
 
 No financial data available.
 
 {/if}
 
-<hr class="my-4" />
-
-## Financial Performance
-
-{#if company_financials.length}
-
-  <Grid cols=2>
-
-  <LineChart
-    data={company_financials}
-    title="Revenue Over Time"
-    x=period_end_date
-    y=revenue
-    yFmt=usd0
-  />
-
-  <LineChart
-    data={company_financials}
-    title="EBITDA Over Time"
-    x=period_end_date
-    y=ebitda
-    yFmt=usd0
-  />
-
-  </Grid>
-
-  <LineChart
-    data={company_financials}
-    title="EBITDA Margin"
-    x=period_end_date
-    y=ebitda_margin
-    yFmt=pct1
-  />
+</div>
 
 {:else}
 
-  No financial data available.
-
-{/if}
-
-{:else}
+<div class="section-highlight">
 
 ## CRM Opportunities
 
@@ -224,5 +263,7 @@ No financial data available.
 No CRM opportunities found for this company.
 
 {/if}
+
+</div>
 
 {/if}

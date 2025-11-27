@@ -9,20 +9,26 @@ select
     end as website,
     c.description,
     co.name as primary_country,
+    co.country_iso2_code as country_code,
+    'https://flagsapi.com/' || co.country_iso2_code || '/flat/32.png' as country_flag,
     i.name as primary_industry
 from dim_companies c
 left join (
-    select company_id, country_code
+    select distinct on (company_id)
+        company_id, 
+        country_code
     from br_company_countries
     where primary_flag = true
-    limit 1
+    order by company_id, valid_from desc
 ) bcc on c.company_id = bcc.company_id
 left join dim_countries co on bcc.country_code = co.country_iso2_code
 left join (
-    select company_id, industry_id
+    select distinct on (company_id)
+        company_id, 
+        industry_id
     from br_company_industries
     where primary_flag = true
-    limit 1
+    order by company_id, valid_from desc
 ) bci on c.company_id = bci.company_id
 left join dim_industries i on bci.industry_id = i.industry_id
 where c.company_id = '${params.id}'
