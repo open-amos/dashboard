@@ -1,5 +1,6 @@
 ---
-title: Data Management
+title: Pipeline Health
+sidebar_position: 1
 queries:
   - latest: metrics/dbt_latest_invocation_overview.sql
   - source_summary: metrics/dbt_source_summary.sql

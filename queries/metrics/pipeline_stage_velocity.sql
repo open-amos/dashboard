@@ -40,8 +40,6 @@ cumulative_counts as (
 select
     stage_name,
     stage_order,
-    deal_count,
-    pipeline_value,
     avg_days_in_stage,
     -- Conversion = (deals in next+ stages) / (deals in current+ stages)
     -- Example: Stage B conversion = (C+D+E deals) / (B+C+D+E deals)
