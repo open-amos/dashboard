@@ -13,6 +13,7 @@
 	neverShowQueries={true}
 	fullWidth=true
 	hideTOC=true
+  homePageName=Portfolio
 	githubRepo="https://github.com/open-amos">
 	<slot slot="content" />
 </EvidenceDefaultLayout>
