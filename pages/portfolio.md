@@ -3,7 +3,7 @@ title: Portfolio
 sidebar_position: 1
 hide_title: true
 queries:
-  - equity_portfolio_metrics: metrics/equity_portfolio_metrics.sql
+  - equity_portfolio_metrics_with_deltas: metrics/equity_portfolio_metrics_with_deltas.sql
   - equity_portfolio_timeseries: metrics/equity_portfolio_timeseries.sql
   - equity_capital_activity: metrics/equity_capital_activity.sql
   - credit_portfolio_metrics: metrics/credit_portfolio_metrics.sql
@@ -112,60 +112,83 @@ queries:
 
 <Tabs color=primary>
 
-{#if equity_portfolio_metrics.length > 0}
+{#if equity_portfolio_metrics_with_deltas.length > 0}
 
 <Tab label="Equity">
 
   ## Equity Portfolio
 
   <Grid cols=4>
-    <BigValue 
-      data={equity_portfolio_metrics} 
-      value=total_nav
-      fmt="usd2m"
-      title="Total NAV"
-    />
-    <BigValue 
-      data={equity_portfolio_metrics} 
-      value=tvpi_portfolio
-      fmt="num1"
-      title="TVPI"
-    />
-    <BigValue 
-      data={equity_portfolio_metrics} 
-      value=dpi_portfolio
-      fmt="num1"
-      title="DPI"
-    />
-    <BigValue 
-      data={equity_portfolio_metrics} 
-      value=rvpi_portfolio
-      fmt="num1"
-      title="RVPI"
-    />
+    <Grid cols=1>
+      <BigValue 
+        data={equity_portfolio_metrics_with_deltas} 
+        value=total_nav
+        fmt="usd2m"
+        title="Total NAV"
+        comparison=nav_delta_pct
+        comparisonFmt=pct2
+        comparisonTitle="vs. Last Quarter"
+      />
+    </Grid>
+    
+    <div class="kpi-with-delta">
+      <BigValue 
+        data={equity_portfolio_metrics_with_deltas} 
+        value=tvpi_portfolio
+        fmt="num1"
+        title="TVPI"
+        comparison=tvpi_delta
+        comparisonFmt=num2
+        comparisonTitle=""
+      />
+    </div>
+    
+    <div class="kpi-with-delta">
+      <BigValue 
+        data={equity_portfolio_metrics_with_deltas} 
+        value=dpi_portfolio
+        fmt="num1"
+        title="DPI"
+        comparison=dpi_delta
+        comparisonFmt=num2
+        comparisonTitle=""
+      />
+    </div>
+    
+    <div class="kpi-with-delta">
+      <BigValue 
+        data={equity_portfolio_metrics_with_deltas} 
+        value=rvpi_portfolio
+        fmt="num1"
+        title="RVPI"
+        comparison=rvpi_delta
+        comparisonFmt=num2
+        comparisonTitle=""
+      />
+    </div>
   </Grid>
 
   <Grid cols=4>
     <BigValue 
-      data={equity_portfolio_metrics} 
+      data={equity_portfolio_metrics_with_deltas} 
       value=total_commitments
       fmt="usd2m"
       title="Total Commitments"
     />
     <BigValue 
-      data={equity_portfolio_metrics} 
+      data={equity_portfolio_metrics_with_deltas} 
       value=unfunded_commitment
       fmt="usd2m"
       title="Unfunded Commitment"
     />
     <BigValue 
-      data={equity_portfolio_metrics} 
+      data={equity_portfolio_metrics_with_deltas} 
       value=total_distributions
       fmt="usd2m"
       title="Total Distributions"
     />
     <BigValue 
-      data={equity_portfolio_metrics} 
+      data={equity_portfolio_metrics_with_deltas} 
       value=total_portfolio_companies
       fmt="num0"
       title="Portfolio Companies"
@@ -180,7 +203,7 @@ queries:
 
   {#each funds_list.filter(d => d.fund_type === 'EQUITY') as fund}
 
-  <a href={fund.fund_link} class="fund-card-link mb-2">
+  <a href=/{fund.fund_link} class="fund-card-link mb-2">
     <div class="fund-card">
       <div class="fund-header">
         <h4>{fund.fund_name}</h4>

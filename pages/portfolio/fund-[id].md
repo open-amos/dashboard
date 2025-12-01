@@ -22,35 +22,53 @@ queries:
 ## Key Metrics - Private Equity
 
 <Grid cols=4>
-
-<BigValue 
-  data={fund_key_metrics} 
-  value=fund_nav
-  fmt="usd2m"
-  title="Fund NAV"
-/>
-
-<BigValue 
-  data={fund_key_metrics} 
-  value=tvpi
-  fmt="num1"
-  title="TVPI"
-/>
-
-<BigValue 
-  data={fund_key_metrics} 
-  value=dpi
-  fmt="num1"
-  title="DPI"
-/>
-
-<BigValue 
-  data={fund_key_metrics} 
-  value=rvpi
-  fmt="num1"
-  title="RVPI"
-/>
-
+  <Grid cols=1>
+    <BigValue 
+      data={fund_key_metrics} 
+      value=fund_nav
+      fmt="usd2m"
+      title="Fund NAV"
+      comparison=nav_delta_pct
+      comparisonFmt=pct2
+      comparisonTitle="vs. Last Quarter"
+    />
+  </Grid>
+  
+  <div class="kpi-with-delta">
+    <BigValue 
+      data={fund_key_metrics} 
+      value=tvpi
+      fmt="num1"
+      title="TVPI"
+      comparison=tvpi_delta
+      comparisonFmt=num2
+      comparisonTitle=""
+    />
+  </div>
+  
+  <div class="kpi-with-delta">
+    <BigValue 
+      data={fund_key_metrics} 
+      value=dpi
+      fmt="num1"
+      title="DPI"
+      comparison=dpi_delta
+      comparisonFmt=num2
+      comparisonTitle=""
+    />
+  </div>
+  
+  <div class="kpi-with-delta">
+    <BigValue 
+      data={fund_key_metrics} 
+      value=rvpi
+      fmt="num1"
+      title="RVPI"
+      comparison=rvpi_delta
+      comparisonFmt=num2
+      comparisonTitle=""
+    />
+  </div>
 </Grid>
 
 <Grid cols=4>
