@@ -36,6 +36,10 @@ jobs:
           npm run sources
           npm run build
 
+      - name: Add CNAME file
+        run: |
+          echo "demo.amos.tech" > build/${{ github.event.repository.name }}/CNAME
+          
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
