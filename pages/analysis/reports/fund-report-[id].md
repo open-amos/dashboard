@@ -41,10 +41,6 @@ This is a short report example. Report templates can be customized and extended.
 
     <PageBreak/>
 
-    <script>
-      export const prerender = false;
-    </script>
-
     {#if fund_key_metrics[0].fund_type === 'EQUITY'}
 
     ## Key Metrics

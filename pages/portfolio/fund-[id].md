@@ -11,10 +11,6 @@ queries:
   - credit_positions_count: metrics/fund_credit_positions_count.sql
 ---
 
-<script>
-  export const prerender = false;
-</script>
-
 # {fund_key_metrics[0].fund_name}
 
 {#if fund_key_metrics[0].fund_type === 'EQUITY'}
