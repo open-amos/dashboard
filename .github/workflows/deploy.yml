@@ -23,7 +23,7 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
+          BASE_PATH: '/'
           ## Add and uncomment any environment variables here
           EVIDENCE_SOURCE__needful_things__filename: ${{ secrets.EVIDENCE_SOURCE__needful_things__filename }}
           EVIDENCE_SOURCE__postgres__database: ${{ secrets.EVIDENCE_SOURCE__postgres__database }}
