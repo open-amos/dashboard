@@ -1,11 +1,15 @@
 name: postgres
 type: postgres
 options:
-  # These are non-secret defaults; they are overridden by:
-  # - EVIDENCE_SOURCE__postgres__* environment variables, and/or
-  # - values in connection.options.yaml (for user/password, etc.)
-  #
-  database: ''
-  host: ''
-  port: ''
-  schema: ''
+  # -----------------------------------------------------------
+  # DOCKER DEFAULTS
+  # These allow 'docker-compose up' to work instantly.
+  # They are automatically overridden if the specific ENV vars exist.
+  # Evidence automatically looks for environment variables following this pattern:
+  # EVIDENCE_SOURCE__[source_name]__[option_name]
+  # -----------------------------------------------------------
+  host: "postgres"        # Matches your docker-compose service name
+  port: 5432
+  database: "amos_db"
+  schema: "public_metrics" # The fix for your table visibility
+  ssl: false
